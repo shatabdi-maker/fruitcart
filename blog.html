@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vegfruit</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+
+  <body class="bg-zinc-800 max-w-7xl mx-auto  text-gray-200 font-sans leading-relaxed">
+
+    <!-- HEADER -->
+    <header class="flex items-center justify-between py-6 px-6 md:px-20 bg-[#1a1a1d] sticky top-0 z-50">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <img src="image/logo/vegfruit.png" alt="Vegfruit Logo" class="h-20 mt-5 w-auto">
+        <h1 class="text-2xl font-bold text-orange-500">Vegfruit</h1>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="hidden md:flex space-x-8 text-lg">
+        <a href="index.html" class="text-gray-400 hover:text-white hover:font-semibold transition">Home</a>
+        <a href="blog.html" class="text-gray-400 hover:text-white hover:font-semibold transition">Blog</a>
+        <a href="shop.html" class="text-gray-400 hover:text-white hover:font-semibold transition">Shop</a>
+        <a href="cart.html" class="text-gray-400 hover:text-white hover:font-semibold transition">Cart</a>
+        <a href="contact.html" class="text-gray-400 hover:text-white hover:font-semibold transition">Contact</a>
+      </nav>
+
+      <!-- Button -->
+      <button class="ml-6 px-5 py-2 bg-orange-600 rounded-lg text-white text-sm hover:bg-orange-700 transition">
+        Sign In
+      </button>
+      <div class="relative inline-block text-left">
+  <!-- 3 dot button -->
+  <button id="menu-btn" class="p-2 rounded-full hover:bg-zinc-700 md:hidden">
+    <!-- three dots icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+        d="M12 5h.01M12 12h.01M12 19h.01" />
+    </svg>
+  </button>
+
+  <!-- dropdown menu -->
+  <div id="dropdown" class="hidden absolute right-0  mt-2 w-40 rounded-lg shadow-lg  z-[9999] text-center text-lg">
+    <a href="index.html" class="text-gray-400  hover:text-white transition">Home</a><br>
+      <a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a><br>
+      <a href="shop.html" class="text-gray-400 hover:text-white transition">Shop</a><br>
+      <a href="cart.html" class="text-gray-400 hover:text-white transition">Cart</a><br>
+      <a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a>
+  </div>
+</div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative w-full bg-no-repeat bg-cover h-[90vh] flex flex-col justify-center items-center text-center"
+      style="background-image: url('image/logo/veg.jpg');">
+      <div class="absolute inset-0 bg-black/40"></div>
+      <div class="relative z-10 px-10">
+        <h1 class="text-3xl md:text-5xl font-serif text-white font-bold mb-6">
+          “FARM-FRESH PRODUCE, DELIVERED HOME”
+        </h1>
+        <button class="bg-green-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-green-800 transition">
+          View Details
+        </button>
+      </div>
+    </section>
+
+    <!-- ORANGE BENEFIT SECTION -->
+    <section class="bg-[#1a1a1d] py-16 px-6 md:px-20">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="text-4xl font-bold text-orange-400 mb-4">Orange Benefits 🍊</h2>
+          <p class="text-gray-300 mb-6">
+            Oranges are rich in vitamin C and antioxidants that boost your immunity and improve skin health.
+            Regular consumption helps fight fatigue and promotes hydration.
+          </p>
+          <ul class="text-gray-400 space-y-2 mb-6">
+            <li>✔ Boosts immune system</li>
+            <li>✔ Improves skin glow</li>
+            <li>✔ Great source of natural hydration</li>
+          </ul>
+          <a href="learn.html" class="bg-orange-600 text-white px-6 py-2 rounded-lg hover:bg-orange-700 transition">Learn More</a>
+        </div>
+        <div class="flex justify-center">
+          <img src="image/logo/images.jpg" alt="Orange Image" class="rounded-xl shadow-lg w-full md:w-4/5">
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section class="max-w-6xl mx-auto px-4 py-16">
+      <h2 class="text-4xl font-bold text-green-400 mb-10 text-center">Latest Blog Posts</h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="bg-white rounded-xl shadow hover:shadow-lg transition duration-300">
+          <img src="image/logo/Bunches of carrots by albertobogo _ Stocksy United.jpg" alt="Carrots"
+            class="rounded-t-xl w-full h-60 object-cover">
+          <div class="p-6 bg-amber-100 text-black rounded-xl">
+            <h3 class="text-xl font-semibold mb-1">5 Healthy Vegetables to Add to Your Diet</h3>
+            <p class="text-gray-700 mb-3">
+              Discover top vegetables that boost immunity and energy naturally.
+            </p>
+            <a href="#" class="text-green-700 font-bold hover:underline">Read More →</a>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white rounded-xl shadow hover:shadow-lg transition duration-300">
+          <img src="image/logo/Raspberries ~ My Grandmother had a garden that….jpg" alt="Raspberries"
+            class="rounded-t-xl w-full h-60 object-cover">
+          <div class="p-6 bg-amber-100 text-black h-50 rounded-xl">
+            <h3 class="text-xl font-semibold mb-1">Organic vs Regular Vegetables</h3>
+            <p class="text-gray-700 mb-3">
+              Understand why organic vegetables make a healthier choice for you.
+            </p>
+            <a href="#" class="text-green-700 font-bold hover:underline">Read More →</a>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white rounded-xl shadow hover:shadow-lg transition duration-300">
+          <img src="image/logo/Pimientos asados y aceite de pimientos (gesmoorde….jpg" alt="Peppers"
+            class="rounded-t-xl w-full h-60 object-cover">
+          <div class="p-6 bg-amber-100 text-black rounded-xl h-50">
+            <h3 class="text-xl font-semibold mb-1">Tips for Storing Vegetables Fresh</h3>
+            <p class="text-gray-700 mb-3">
+              Keep your veggies fresh longer with smart storage ideas.
+            </p>
+            <a href="#" class="text-green-700 font-bold hover:underline">Read More →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="bg-green-900 py-24">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <dl class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
+          <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+            <dt class="text-base text-green-200">Vegetables sold daily</dt>
+            <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">15,000 kg</dd>
+          </div>
+          <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+            <dt class="text-base text-green-200">Varieties available</dt>
+            <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">120 types</dd>
+          </div>
+          <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+            <dt class="text-base text-green-200">Happy customers annually</dt>
+            <dd class="order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl">25,000+</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- HEALTHY TIPS SECTION -->
+    <section class="py-16 bg-[#1a1a1d] px-6 md:px-20">
+      <div class="max-w-6xl mx-auto text-center">
+        <h2 class="text-4xl font-bold text-orange-400 mb-6">Healthy Living Tips 🥦</h2>
+        <p class="text-gray-300 mb-8">
+          Add more greens to your plate, drink plenty of water, and support your body with natural foods every day.
+        </p>
+        <a href="blog.html" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold transition">Explore More</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+   <footer class="bg-[#1a1a1d] border-t border-gray-700 py-10 px-6 md:px-20">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <h4 class="font-bold text-xl mb-2">Our Menu Benefit</h4>
+        <ul class="space-y-2 text-sm text-gray-300">
+          <li>• Fresh — play around on modern menus</li>
+          <li>• Vitamin — Nisspen non procents</li>
+          <li>• Organic — Towards wellness</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-xl mb-2">Opening Hours</h4>
+        <ul class="space-y-1 text-sm text-gray-300">
+          <li>Mon–Thu: 13:00–22:00</li>
+          <li>Friday: 14:00–23:00</li>
+          <li>Saturday: 10:00–23:00</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-xl mb-2">Quick Links</h4>
+        <ul class="space-y-1 text-sm text-gray-300 mb-4">
+          <li><a href="#">Menu</a></li>
+          <li><a href="#">Booking</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="text-center text-xs text-gray-500 mt-10">© 2025 Vegfruit — built by Shatabdee</p>
+  </footer>
+    <script>
+        /*three dot*/
+      const btn = document.getElementById('menu-btn');
+      const menu = document.getElementById('dropdown');
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden'); // show/hide menu
+      });
+    </script>
+</body>
+</html>
