@@ -2,233 +2,730 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  </head>
-<body class="max-w-7xl mx-auto  bg-zinc-800 text-gray-200 font-sans leading-relaxed"> 
-   <header class="flex items-center justify-between py-6 px-6 md:px-20 bg-[#1a1a1d]">
-    <!-- Logo -->
-    <div class="flex items-center space-x-3">
-      <img src="image/logo/vegfruit.png" alt="Vegfruit Logo" class="h-20 mt-5 w-auto">
-      <h1 class="text-2xl font-bold text-orange-500">Vegfruit</h1>
-    </div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Navigation -->
-    <nav class="hidden md:flex space-x-8 text-lg">
-      <a href="index.html" class="text-gray-400 hover:text-white hover:font-semibold transition">Home</a>
-      <a href="blog.html" class="text-gray-400 hover:text-white hover:font-semibold transition">Blog</a>
-      <a href="shop.html" class="text-gray-400 hover:text-white hover:font-semibold transition">Shop</a>
-      <a href="cart.html" class="text-gray-400 hover:text-white hover:font-semibold transition">Cart</a>
-      <a href="contact.html" class="text-gray-400 hover:text-white hover:font-semibold transition">Contact</a>
-    </nav>
+     <style>
+    
+    .payment-method {
+      transition: all 0.3s ease;
+    }
+    .payment-method:hover {
+      transform: translateY(-3px);
+    }
+    .payment-method.selected {
+      border-color: #ea580c;
+      background-color: rgba(234, 88, 12, 0.05);
+    }
+    .cart-item {
+      transition: all 0.2s ease;
+    }
+    .cart-item:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    .quantity-btn {
+      transition: all 0.2s ease;
+    }
+    .quantity-btn:hover {
+      background-color: #d1d5db;
+    }
+    @media (max-width: 767px) {
+        .shatabdee{
+        display: grid !important;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    }
+
+
+    @media (max-width: 575px) {
+      .cart-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .cart-table thead {
+        display: none;
+      }
+      .cart-table tbody, .cart-table tr, .cart-table td {
+        display: block;
+        width: 100%;
+      }
+      .cart-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #4b5563;
+        border-radius: 10px;
+        padding: 10px;
+      }
+      .cart-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #4b5563;
+      }
+      .cart-table td:last-child {
+        border-bottom: none;
+      }
+      .cart-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin-right: 10px;
+      }
+      .veg {
+        width: 547px;
+    }
+    .shatabdee{
+        display: grid !important;
+        grid-template-columns: 1fr 1fr;
+    }
+    .me {
+        margin-left: -8px !important;
+    }
+    }
+    
+  </style>
+ 
+  </head>
+<body class="max-w-7xl mx-auto  bg-zinc-800 text-gray-200 font-sans leading-relaxed scrollbar-hide veg"> 
+   <header class="flex items-center justify-between py-6 px-6 md:px-20 bg-[#1a1a1d] sticky">
+        <!-- Logo -->
+        <div class="flex items-center space-x-3 ">
+            <img src="image/logo/vegfruit.png" alt="Vegfruit Logo" class="h-20 mt-5 w-auto">
+            <h1 class="text-2xl font-bold text-orange-500">Vegfruit</h1>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="hidden md:flex flex-1 justify-end space-x-8 text-lg">
+            <a href="index.html" class="text-gray-400 hover:text-white hover:font-semibold transition">Home</a>
+            <a href="blog.html" class="text-gray-400 hover:text-white hover:font-semibold transition">Blog</a>
+            <a href="shop.html" class="text-gray-400 hover:text-white hover:font-semibold transition">Shop</a>
+            <a href="cart.html" class="text-gray-400 hover:text-white hover:font-semibold transition">Cart</a>
+            <a href="contact.html" class="text-gray-400 hover:text-white hover:font-semibold transition">Contact</a>
+        </nav>
+
+
 
     <!-- Button -->
-  <button class="ml-6 px-5 py-2 bg-orange-600 rounded-lg text-white text-sm hover:bg-orange-700 transition">
-      Sign In
-  </button>
+ 
   <div class="relative inline-block text-left">
-  <!-- 3 dot button -->
-  <button id="menu-btn" class="p-2 rounded-full hover:bg-zinc-700 md:hidden">
-    <!-- three dots icon -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-        d="M12 5h.01M12 12h.01M12 19h.01" />
-    </svg>
-  </button>
+        <!-- Mobile menu button -->
+        <button id="menu-btn" class="p-2 rounded-full hover:bg-zinc-700 md:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M12 5h.01M12 12h.01M12 19h.01" />
+          </svg>
+        </button>
 
-  <!-- dropdown menu -->
-  <div id="dropdown" class="hidden absolute right-0  mt-2 w-40 rounded-lg shadow-lg  z-[9999] text-center text-lg">
-    <a href="index.html" class="text-gray-400  hover:text-white transition">Home</a><br>
-      <a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a><br>
-      <a href="shop.html" class="text-gray-400 hover:text-white transition">Shop</a><br>
-      <a href="cart.html" class="text-gray-400 hover:text-white transition">Cart</a><br>
-      <a href="contact.html" class="text-gray-400 hover:text-white transition">Contact</a>
-  </div>
-</div>
+        <!-- Mobile dropdown menu -->
+        <div id="dropdown" class="hidden absolute right-0 mt-2 w-40 rounded-lg shadow-lg bg-[#1a1a1d] z-50 text-center text-base p-4 space-y-3">
+          <a href="index.html" class="block text-gray-400 hover:text-white transition">Home</a>
+          <a href="blog.html" class="block text-gray-400 hover:text-white transition">Blog</a>
+          <a href="shop.html" class="block text-gray-400 hover:text-white transition">Shop</a>
+          <a href="cart.html" class="block text-white font-semibold transition">Cart</a>
+          <a href="contact.html" class="block text-gray-400 hover:text-white transition">Contact</a>
+          <button class="w-full px-4 py-2 bg-orange-600 rounded-lg text-white text-sm hover:bg-orange-700 transition">
+            Sign In
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
    
 </header>
+<!-- Main Content -->
+  <main class="flex-grow px-4 md:px-8 lg:px-20 py-6 md:py-10">
+    <!-- Page Title -->
+    <div class="mb-6 md:mb-10">
+      <h1 class="text-2xl md:text-3xl font-bold text-center mb-2">Shopping Cart</h1>
+      <p class="text-gray-400 text-center">Review your items and proceed to checkout</p>
+    </div>
 
-
-  <div class="max-w-7xl mx-auto py-10">
-    <h1 class="text-3xl font-semibold text-center mb-2">Shopping Cart</h1>
-  </div>
-
-    <!-- Main Container -->
-  <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 bg-white p-6 rounded-2xl shadow bg-zinc-500">
-    <!-- Left: Product List -->
-    <div class="md:col-span-2 ">
-      <table class="w-full text-left">
-        <thead>
-          <tr class="border-b text-gray-200 bg-orange-800 ">
-            <th class="pb-3 ">Product</th>
-            <th class="pb-3">Price</th>
-            <th class="pb-3">Quantity</th>
-            <th class="pb-3">Subtotal</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y">
-          <tr class="hover:bg-gray-700 rounded-lg">
-            <td class="py-4 flex items-center gap-4">
-              <img src="./image/logo/Comida.jpg" class="w-14 h-14 rounded-lg object-cover" />
-              <div>
-                <p class="font-semibold">Comiba </p>
-                <p class="text-sm text-gray-500">Vagetable</p>
-              </div>
-            </td>
-            <td>$35.00</td>
-            <td>
-              <div class="flex items-center gap-2">
-                <button class="px-2 py-1 bg-gray-200 text-zinc-700 rounded">−</button>
-                <span>2</span>
-                <button class="px-2 py-1 bg-gray-200  text-zinc-700 rounded">+</button>
-              </div>
-            </td>
-            <td class="font-semibold">$140.00</td>
-          </tr>
-          <!-- Duplicate more rows as needed -->
-        </tbody>
-        <tbody class="divide-y">
-          <tr class="hover:bg-gray-700">
-            <td class="py-4 flex items-center gap-4">
-              <img src="./image/logo/Comida.jpg" class="w-14 h-14 rounded-lg object-cover hover:mr-20" />
-              <div>
-                <p class="font-semibold">Comiba </p>
-                <p class="text-sm text-gray-500">Vagetable</p>
-              </div>
-            </td>
-            <td>$35.00</td>
-            <td>
-              <div class="flex items-center gap-2">
-                <button class="px-2 py-1 bg-gray-200 text-zinc-700 rounded">−</button>
-                <span>2</span>
-                <button class="px-2 py-1 bg-gray-200  text-zinc-700 rounded">+</button>
-              </div>
-            </td>
-            <td class="font-semibold">$140.00</td>
-          </tr>
-          <!-- Duplicate more rows as needed -->
-        </tbody>
-        <tbody class="divide-y">
-          <tr class="hover:bg-gray-700 rounded-lg">
-            <td class="py-4 flex items-center gap-4">
-              <img src="./image/logo/Comida.jpg" class="w-14 h-14 rounded-lg object-cover" />
-              <div>
-                <p class="font-semibold">Comiba </p>
-                <p class="text-sm text-gray-500">Vagetable</p>
-              </div>
-            </td>
-            <td>$35.00</td>
-            <td>
-              <div class="flex items-center gap-2">
-                <button class="px-2 py-1 bg-gray-200 text-zinc-700 rounded">−</button>
-                <span>2</span>
-                <button class="px-2 py-1 bg-gray-200  text-zinc-700 rounded">+</button>
-              </div>
-            </td>
-            <td class="font-semibold">$40.00</td>
-          </tr>
-          <!-- Duplicate more rows as needed -->
-        </tbody>
-      </table>
-
-      <!-- Coupon Section -->
-      <div class="flex flex-wrap justify-between items-center mt-6 border-t pt-4">
-        <div class="flex gap-2">
-          <input type="text" placeholder="Coupon Code" class="border rounded-lg px-3 py-2 focus:outline-none focus:ring w-48" />
-          <button class="bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-800">Apply Coupon</button>
+    <!-- Cart Content -->
+    <div class="grid md:grid-cols-3 gap-6 lg:gap-8" id="cart-slider" >
+      <!-- Left: Product List -->
+      <div class="md:col-span-2  grid-cols-[repeat(auto-fit,minmax(80px,1fr))] gap-2 me">
+        <!-- Cart Items Table -->
+        <div class="bg-zinc-700 rounded-xl p-4 md:p-6 shadow-lg overflow-x-auto">
+          <table class="w-full text-left min-w-[500px]">
+            <thead>
+              <tr class="border-b border-gray-600">
+                <th class="pb-3 font-semibold text-gray-300">Product</th>
+                <th class="pb-3 font-semibold text-gray-300">Price</th>
+                <th class="pb-3 font-semibold text-gray-300">Quantity</th>
+                <th class="pb-3 font-semibold text-gray-300">Subtotal</th>
+                <th class="pb-3 font-semibold text-gray-300"></th>
+              </tr>
+            </thead>
+            <tbody id="cart-items">
+              <!-- Cart items will be loaded here by JavaScript -->
+            </tbody>
+          </table>
+          
+          <!-- Empty cart message -->
+          <div id="empty-cart-message" class="hidden text-center py-10">
+            <i class="fas fa-shopping-cart text-5xl text-gray-500 mb-4"></i>
+            <h3 class="text-xl font-semibold mb-2">Your cart is empty</h3>
+            <p class="text-gray-400 mb-6">Add some delicious fruits and vegetables to get started!</p>
+            <a href="shop.html" class="inline-block bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg transition duration-300">Start Shopping</a>
+          </div>
         </div>
-        <button class="text-gray-500 hover:underline">Clear Shopping Cart</button>
+
+        <!-- Coupon & Actions Section -->
+        <div class="mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <input type="text" id="coupon-code" placeholder="Coupon Code" class="border border-gray-600 bg-zinc-800 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent flex-grow sm:w-48" />
+            <button id="apply-coupon" class="bg-green-700 hover:bg-green-800 text-white px-5 py-3 rounded-lg transition duration-300">Apply Coupon</button>
+          </div>
+          <div class="flex gap-4">
+            <button id="update-cart" class="text-gray-300 hover:text-white hover:underline">Update Cart</button>
+            <button id="clear-cart" class="text-red-400 hover:text-red-300 hover:underline">Clear Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Order Summary & Checkout -->
+      <div class="bg-zinc-700 rounded-xl p-5 md:p-6 shadow-lg h-fit me">
+        <h2 class="text-xl font-bold mb-4 pb-3 border-b border-gray-600">Order Summary</h2>
+        
+        <!-- Order Details -->
+        <div class="space-y-3 mb-5">
+          <div class="flex justify-between"><span class="text-gray-300">Items (3)</span><span>$306.00</span></div>
+          <div class="flex justify-between"><span class="text-gray-300">Shipping</span><span>$0.00</span></div>
+          <div class="flex justify-between"><span class="text-gray-300">Coupon Discount</span><span class="text-green-500">- $36.00</span></div>
+        </div>
+        
+        <div class="flex justify-between font-bold text-lg pt-3 border-t border-gray-600 mb-6">
+          <span>Total</span><span class="text-orange-500">$270.00</span>
+        </div>
+        
+        <!-- Payment Methods -->
+        <div class="mb-6">
+          <h3 class="font-semibold mb-3 text-gray-300">Select Payment Method</h3>
+          <div class="grid grid-cols-2 gap-3 mb-4">
+            <div class="payment-method border border-gray-600 rounded-lg p-3 text-center cursor-pointer" data-method="bkash">
+              <div class="text-green-500 mb-1"><i class="fas fa-mobile-alt text-xl"></i></div>
+              <span class="text-sm font-medium">bKash</span>
+            </div>
+            <div class="payment-method border border-gray-600 rounded-lg p-3 text-center cursor-pointer" data-method="nagad">
+              <div class="text-green-600 mb-1"><i class="fas fa-wallet text-xl"></i></div>
+              <span class="text-sm font-medium">Nagad</span>
+            </div>
+            <div class="payment-method border border-gray-600 rounded-lg p-3 text-center cursor-pointer" data-method="visa">
+              <div class="text-blue-500 mb-1"><i class="fab fa-cc-visa text-xl"></i></div>
+              <span class="text-sm font-medium">Visa</span>
+            </div>
+            <div class="payment-method border border-gray-600 rounded-lg p-3 text-center cursor-pointer" data-method="paypal">
+              <div class="text-blue-400 mb-1"><i class="fab fa-paypal text-xl"></i></div>
+              <span class="text-sm font-medium">PayPal</span>
+            </div>
+          </div>
+          
+          <!-- Payment Form (Dynamic) -->
+          <div id="payment-form" class="hidden mt-4 p-4 bg-zinc-800 rounded-lg">
+            <form id="checkout-form">
+              <div id="bkash-form" class="payment-details">
+                <div class="mb-3">
+                  <label class="block text-sm mb-1 text-gray-300">bKash Phone Number</label>
+                  <input type="tel" class="w-full border border-gray-600 bg-zinc-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="01XXXXXXXXX" required>
+                </div>
+                <div class="mb-3">
+                  <label class="block text-sm mb-1 text-gray-300">Transaction ID</label>
+                  <input type="text" class="w-full border border-gray-600 bg-zinc-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="TRX123456789" required>
+                </div>
+              </div>
+              
+              <div id="nagad-form" class="payment-details hidden">
+                <div class="mb-3">
+                  <label class="block text-sm mb-1 text-gray-300">Nagad Phone Number</label>
+                  <input type="tel" class="w-full border border-gray-600 bg-zinc-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-600" placeholder="01XXXXXXXXX" required>
+                </div>
+              </div>
+              
+              <div id="visa-form" class="payment-details hidden">
+                <div class="mb-3">
+                  <label class="block text-sm mb-1 text-gray-300">Card Number</label>
+                  <input type="text" class="w-full border border-gray-600 bg-zinc-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="1234 5678 9012 3456" required>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-sm mb-1 text-gray-300">Expiry Date</label>
+                    <input type="text" class="w-full border border-gray-600 bg-zinc-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="MM/YY" required>
+                  </div>
+                  <div>
+                    <label class="block text-sm mb-1 text-gray-300">CVV</label>
+                    <input type="text" class="w-full border border-gray-600 bg-zinc-700 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="123" required>
+                  </div>
+                </div>
+              </div>
+              
+              <div id="paypal-form" class="payment-details hidden text-center py-3">
+                <p class="text-gray-300 mb-3">You will be redirected to PayPal to complete your payment</p>
+                <button type="button" id="paypal-redirect" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg transition duration-300">
+                  <i class="fab fa-paypal mr-2"></i> Proceed to PayPal
+                </button>
+              </div>
+              
+              <div class="mt-4">
+                <label class="flex items-center">
+                  <input type="checkbox" class="mr-2 rounded" required>
+                  <span class="text-sm text-gray-300">I agree to the <a href="#" class="text-orange-500 hover:underline">Terms & Conditions</a></span>
+                </label>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+        <!-- Checkout Button -->
+        <button id="proceed-checkout" class="w-full bg-green-700 hover:bg-green-800 text-white py-3 rounded-lg font-medium transition duration-300 flex items-center justify-center">
+          <i class="fas fa-lock mr-2"></i> Proceed to Checkout
+        </button>
+        
+        <!-- Continue Shopping -->
+        <div class="text-center mt-4">
+          <a href="shop.html" class="text-gray-400 hover:text-white text-sm transition duration-300">
+            <i class="fas fa-arrow-left mr-1"></i> Continue Shopping
+          </a>
+        </div>
       </div>
     </div>
 
-    <!-- Right: Order Summary -->
-    <div class="bg-gray-400 rounded-2xl p-6 shadow-inner">
-      <h2 class="text-xl font-semibold mb-4">Order Summary</h2>
-      <div class="space-y-2 text-gray-600">
-        <div class="flex justify-between"><span>Items</span><span>9</span></div>
-        <div class="flex justify-between"><span>Sub Total</span><span>$306.00</span></div>
-        <div class="flex justify-between"><span>Shipping</span><span>$0.00</span></div>
-        <div class="flex justify-between"><span>Coupon Discount</span><span class="text-green-600">- $36.00</span></div>
+    <!-- Features Section -->
+    <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-center">
+      <div class="bg-zinc-700 hover:bg-zinc-600 p-5 rounded-xl transition duration-300">
+        <div class="text-3xl mb-3 text-green-500"><i class="fas fa-shipping-fast"></i></div>
+        <p class="font-semibold mb-1">Free Shipping</p>
+        <p class="text-gray-400 text-sm">For orders above $50</p>
       </div>
-      <hr class="my-4">
-      <div class="flex justify-between font-semibold text-lg">
-        <span>Total</span><span>$270.00</span>
+      <div class="bg-zinc-700 hover:bg-zinc-600 p-5 rounded-xl transition duration-300">
+        <div class="text-3xl mb-3 text-blue-500"><i class="fas fa-credit-card"></i></div>
+        <p class="font-semibold mb-1">Flexible Payment</p>
+        <p class="text-gray-400 text-sm">Multiple secure payment options</p>
       </div>
-      <button class="w-full mt-6 bg-green-700 text-white py-3 rounded-lg hover:bg-green-800">
-        Proceed to Checkout
-      </button>
+      <div class="bg-zinc-700 hover:bg-zinc-600 p-5 rounded-xl transition duration-300">
+        <div class="text-3xl mb-3 text-orange-500"><i class="fas fa-headset"></i></div>
+        <p class="font-semibold mb-1">24×7 Support</p>
+        <p class="text-gray-400 text-sm">We support all day</p>
+      </div>
     </div>
-  </div>
-
-  <!-- Bottom Icons -->
-  <div class="max-w-6xl mx-auto mt-10 flex flex-wrap justify-around text-center text-gray-200 text-lg ">
-    <div class="hover:bg-zinc-700 p-5">
-      <p class="font-semibold ">🚚 Free Shipping</p>
-      <p class="text-lg">For orders above $50</p>
-    </div>
-    <div class="hover:bg-zinc-700 p-5">
-      <p class="font-semibold">💳 Flexible Payment</p>
-      <p class="text-sm">Multiple secure payment options</p>
-    </div>
-    <div class="hover:bg-zinc-700 p-5  ">
-      <p class="font-semibold">🕓 24×7 Support</p>
-      <p class="text-sm">We support all day</p>
-    </div>
-  </div>
- 
-  
-
-
-
-
-
-
-
-
-
-
-
+  </main>
 
 
 <!--footer-->
-<footer class="bg-[#1a1a1d] border-t border-gray-700 py-10 px-6 md:px-20">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div>
-        <h4 class="font-bold text-xl mb-2">Our Menu Benefit</h4>
-        <ul class="space-y-2 text-sm text-gray-300">
-          <li>• Fresh — play around on modern menus</li>
-          <li>• Vitamin — Nisspen non procents</li>
-          <li>• Organic — Towards wellness</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-bold text-xl mb-2">Opening Hours</h4>
-        <ul class="space-y-1 text-sm text-gray-300">
-          <li>Mon–Thu: 13:00–22:00</li>
-          <li>Friday: 14:00–23:00</li>
-          <li>Saturday: 10:00–23:00</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-bold text-xl mb-2">Quick Links</h4>
-        <ul class="space-y-1 text-sm text-gray-300 mb-4">
-          <li><a href="#">Menu</a></li>
-          <li><a href="#">Booking</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-    <p class="text-center text-xs text-gray-500 mt-10">© 2025 Vegfruit — built by Shatabdee</p>
-  </footer>
+<footer class="bg-gray-900 mt-12 py-12 px-4">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 shatabdee">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center mb-4">
+                      <img src="image/logo/vegfruit.png" alt="Vegfruit Logo" class="h-10 mt-3 w-auto">
+                        <h3 class="text-2xl font-bold text-orange-500">Vegfruit</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Your trusted online destination for fresh fruits and vegetables. We deliver farm-fresh produce right to your doorstep.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-orange-500 transition duration-200">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-orange-500 transition duration-200">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-orange-500 transition duration-200">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-orange-500 transition duration-200">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-white">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="index.html" class="text-gray-400 hover:text-orange-500 transition duration-200 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2"></i>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="shop.html" class="text-gray-400 hover:text-orange-500 transition duration-200 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2"></i>
+                                Shop Fruits
+                            </a>
+                        </li>
+                        <li>
+                            <a href="shop.html?category=vegetables" class="text-gray-400 hover:text-orange-500 transition duration-200 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2"></i>
+                                Shop Vegetables
+                            </a>
+                        </li>
+                        <li>
+                            <a href="cart.html" class="text-gray-400 hover:text-orange-500 transition duration-200 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2"></i>
+                                View Cart
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contact.html" class="text-gray-400 hover:text-orange-500 transition duration-200 flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2"></i>
+                                Contact Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Fruit Categories -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-white">Fruit Categories</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="shop.html?category=tropical" class="text-gray-400 hover:text-orange-500 transition duration-200 flex items-center">
+                                <i class="fas fa-leaf text-green-500 mr-2"></i>
+                                Tropical Fruits
+                            </a>
+                        </li>
+                        <li>
+                            <a href="shop.html?category=citrus" class="text-gray-400 hover:text-orange-500 transition duration-200 flex items-center">
+                                <i class="fas fa-lemon text-yellow-400 mr-2"></i>
+                                Citrus Fruits
+                            </a>
+                        </li>
+                        <li>
+                            <a href="shop.html?category=berries" class="text-gray-400 hover:text-orange-500 transition duration-200 flex items-center">
+                                <i class="fas fa-seedling text-purple-500 mr-2"></i>
+                                Berries
+                            </a>
+                        </li>
+                        <li>
+                            <a href="shop.html?category=seasonal" class="text-gray-400 hover:text-orange-500 transition duration-200 flex items-center">
+                                <i class="fas fa-sun text-yellow-500 mr-2"></i>
+                                Seasonal Fruits
+                            </a>
+                        </li>
+                        <li>
+                            <a href="shop.html?category=organic" class="text-gray-400 hover:text-orange-500 transition duration-200 flex items-center">
+                                <i class="fas fa-certificate text-green-400 mr-2"></i>
+                                Organic Fruits
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Newsletter -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-white">Any Information</h4>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-orange-500 mr-3"></i>
+                            <span class="text-gray-400">+880 1234 567890</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-orange-500 mr-3"></i>
+                            <span class="text-gray-400">support@vegfruit.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-orange-500 mr-3"></i>
+                            <span class="text-gray-400">Dhaka, Bangladesh</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Methods in Footer -->
+            <div class="mt-10 pt-8 border-t border-gray-800">
+                <h4 class="text-lg font-bold mb-4 text-white text-center">We Accept</h4>
+                <div class="flex flex-wrap justify-center gap-4 mb-6">
+                    <div class="bg-gray-800 px-4 py-2 rounded-lg">
+                        <i class="fab fa-cc-visa text-2xl text-blue-500"></i>
+                        <span class="ml-2">PayPal</span>
+                    </div>
+                    
+                    <div class="bg-gray-800 px-4 py-2 rounded-lg">
+                        <i class="fas fa-mobile-alt text-2xl text-green-500"></i>
+                        <span class="ml-2">bKash</span>
+                    </div>
+                    <div class="bg-gray-800 px-4 py-2 rounded-lg">
+                        <i class="fas fa-wallet text-2xl text-green-600"></i>
+                        <span class="ml-2">Nagad</span>
+                    </div>
+                    
+                    <div class="bg-gray-800 px-4 py-2 rounded-lg">
+                        <i class="fas fa-credit-card text-2xl text-purple-500"></i>
+                        <span class="ml-2">Card</span>
+                    </div>
+                </div>
+            </div>
+ </div>
+  <p class="text-center text-xs text-gray-500 mt-10">© 2025 Vegfruit — built by Shatabdee</p>
+
+ </footer>           
 
 <script>
+  
+
     /*three dot*/
     const btn = document.getElementById('menu-btn');
   const menu = document.getElementById('dropdown');
-
   btn.addEventListener('click', () => {
     menu.classList.toggle('hidden'); // show/hide menu
   });
+  
+    // Cart Data
+    let cartItems = [
+      { id: 1, name: "Organic Tomatoes", category: "Vegetable", price: 35.00, quantity: 2, image: "./image/logo/Comida.jpg" },
+      { id: 2, name: "Fresh Strawberries", category: "Fruit", price: 25.00, quantity: 1, image: "./image/logo/Comida.jpg" },
+      { id: 3, name: "Green Spinach", category: "Vegetable", price: 15.00, quantity: 3, image: "./image/logo/Comida.jpg" }
+    ];
+    
+    let selectedPaymentMethod = null;
+    
+    // Initialize the cart
+    document.addEventListener('DOMContentLoaded', function() {
+      renderCartItems();
+      setupEventListeners();
+      updateOrderSummary();
+    });
+    
+    // Render cart items
+    function renderCartItems() {
+      const cartItemsContainer = document.getElementById('cart-items');
+      const emptyCartMessage = document.getElementById('empty-cart-message');
+      
+      if (cartItems.length === 0) {
+        cartItemsContainer.innerHTML = '';
+        emptyCartMessage.classList.remove('hidden');
+        return;
+      }
+      
+      emptyCartMessage.classList.add('hidden');
+      
+      let cartItemsHTML = '';
+      
+      cartItems.forEach(item => {
+        const subtotal = (item.price * item.quantity).toFixed(2);
+        cartItemsHTML += `
+          <tr class="cart-item border-b border-gray-600">
+            <td class="py-4 flex items-center gap-3">
+              <img src="${item.image}" class="w-12 h-12 md:w-14 md:h-14 rounded-lg object-cover" alt="${item.name}" />
+              <div>
+                <p class="font-semibold">${item.name}</p>
+                <p class="text-sm text-gray-400">${item.category}</p>
+              </div>
+            </td>
+            <td class="py-4">$${item.price.toFixed(2)}</td>
+            <td class="py-4">
+              <div class="flex items-center gap-2">
+                <button class="quantity-btn px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-500" data-id="${item.id}" data-action="decrease">−</button>
+                <span class="w-8 text-center">${item.quantity}</span>
+                <button class="quantity-btn px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-500" data-id="${item.id}" data-action="increase">+</button>
+              </div>
+            </td>
+            <td class="py-4 font-semibold">$${subtotal}</td>
+            <td class="py-4">
+              <button class="remove-item text-red-400 hover:text-red-300" data-id="${item.id}">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+      
+      cartItemsContainer.innerHTML = cartItemsHTML;
+    }
+    
+    // Update order summary
+    function updateOrderSummary() {
+      const itemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+      const subtotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+      const couponDiscount = 36.00; // Fixed for this example
+      const total = subtotal - couponDiscount;
+      
+      document.querySelector('.order-summary .item-count').textContent = itemCount;
+      document.querySelector('.order-summary .subtotal').textContent = `$${subtotal.toFixed(2)}`;
+      document.querySelector('.order-summary .total').textContent = `$${total.toFixed(2)}`;
+    }
+    
+    // Setup event listeners
+    function setupEventListeners() {
+      // Quantity buttons
+      document.addEventListener('click', function(e) {
+        // Quantity increase/decrease
+        if (e.target.closest('.quantity-btn')) {
+          const button = e.target.closest('.quantity-btn');
+          const id = parseInt(button.getAttribute('data-id'));
+          const action = button.getAttribute('data-action');
+          
+          const item = cartItems.find(item => item.id === id);
+          if (item) {
+            if (action === 'increase') {
+              item.quantity += 1;
+            } else if (action === 'decrease' && item.quantity > 1) {
+              item.quantity -= 1;
+            }
+            
+            renderCartItems();
+            updateOrderSummary();
+          }
+        }
+        
+        // Remove item
+        if (e.target.closest('.remove-item')) {
+          const button = e.target.closest('.remove-item');
+          const id = parseInt(button.getAttribute('data-id'));
+          
+          cartItems = cartItems.filter(item => item.id !== id);
+          renderCartItems();
+          updateOrderSummary();
+        }
+        
+        // Payment method selection
+        if (e.target.closest('.payment-method')) {
+          const paymentMethod = e.target.closest('.payment-method');
+          const method = paymentMethod.getAttribute('data-method');
+          
+          // Remove selected class from all methods
+          document.querySelectorAll('.payment-method').forEach(m => {
+            m.classList.remove('selected');
+          });
+          
+          // Add selected class to clicked method
+          paymentMethod.classList.add('selected');
+          selectedPaymentMethod = method;
+          
+          // Show payment form
+          document.getElementById('payment-form').classList.remove('hidden');
+          
+          // Hide all payment detail forms
+          document.querySelectorAll('.payment-details').forEach(form => {
+            form.classList.add('hidden');
+          });
+          
+          // Show selected payment form
+          document.getElementById(`${method}-form`).classList.remove('hidden');
+        }
+        
+        // Apply coupon
+        if (e.target.id === 'apply-coupon') {
+          const couponCode = document.getElementById('coupon-code').value;
+          if (couponCode.trim() === '') {
+            alert('Please enter a coupon code');
+            return;
+          }
+          
+          // Simple coupon validation (for demo)
+          if (couponCode.toUpperCase() === 'VEGFRUIT10') {
+            alert('Coupon applied successfully! You saved $36.00');
+            document.getElementById('coupon-code').value = '';
+          } else {
+            alert('Invalid coupon code. Try "VEGFRUIT10" for demo.');
+          }
+        }
+        
+        // Clear cart
+        if (e.target.id === 'clear-cart') {
+          if (confirm('Are you sure you want to clear your cart?')) {
+            cartItems = [];
+            renderCartItems();
+            updateOrderSummary();
+          }
+        }
+        
+        // Update cart
+        if (e.target.id === 'update-cart') {
+          alert('Cart updated!');
+        }
+        
+        // Proceed to checkout
+        if (e.target.id === 'proceed-checkout' || e.target.id === 'paypal-redirect') {
+          if (cartItems.length === 0) {
+            alert('Your cart is empty. Add items before checkout.');
+            return;
+          }
+          
+          if (!selectedPaymentMethod) {
+            alert('Please select a payment method');
+            return;
+          }
+          
+          // Validate form based on selected payment method
+          let isValid = true;
+          let paymentDetails = {};
+          
+          if (selectedPaymentMethod === 'bkash') {
+            const phoneInput = document.querySelector('#bkash-form input[type="tel"]');
+            const trxInput = document.querySelector('#bkash-form input[type="text"]');
+            
+            if (!phoneInput.value || !trxInput.value) {
+              isValid = false;
+              alert('Please fill in bKash payment details');
+            } else {
+              paymentDetails = {
+                phone: phoneInput.value,
+                transactionId: trxInput.value
+              };
+            }
+          } else if (selectedPaymentMethod === 'nagad') {
+            const phoneInput = document.querySelector('#nagad-form input[type="tel"]');
+            
+            if (!phoneInput.value) {
+              isValid = false;
+              alert('Please enter your Nagad phone number');
+            } else {
+              paymentDetails = { phone: phoneInput.value };
+            }
+          } else if (selectedPaymentMethod === 'visa') {
+            const cardInput = document.querySelector('#visa-form input[placeholder="1234 5678 9012 3456"]');
+            const expiryInput = document.querySelector('#visa-form input[placeholder="MM/YY"]');
+            const cvvInput = document.querySelector('#visa-form input[placeholder="123"]');
+            
+            if (!cardInput.value || !expiryInput.value || !cvvInput.value) {
+              isValid = false;
+              alert('Please fill in all card details');
+            } else {
+              paymentDetails = {
+                cardNumber: cardInput.value,
+                expiry: expiryInput.value,
+                cvv: cvvInput.value
+              };
+            }
+          }
+          
+          // Check if terms are agreed
+          const termsCheckbox = document.querySelector('input[type="checkbox"]');
+          if (!termsCheckbox.checked) {
+            isValid = false;
+            alert('Please agree to the Terms & Conditions');
+          }
+          
+          if (isValid) {
+            // Show success message
+            const total = document.querySelector('.order-summary .total').textContent;
+            const orderId = Math.floor(Math.random() * 1000000);
+            
+            // In a real app, you would submit the data to a server here
+            alert(`Order placed successfully!\n\nOrder ID: #${orderId}\nTotal: ${total}\nPayment Method: ${selectedPaymentMethod.toUpperCase()}\n\nThank you for shopping with Vegfruit!`);
+            
+            // Clear cart
+            cartItems = [];
+            renderCartItems();
+            updateOrderSummary();
+            
+            // Reset payment form
+            document.getElementById('payment-form').classList.add('hidden');
+            document.querySelectorAll('.payment-method').forEach(m => {
+              m.classList.remove('selected');
+            });
+            selectedPaymentMethod = null;
+            document.getElementById('checkout-form').reset();
+          }
+        }
+      });
+    }
 </script>
 </body>
 </html>
